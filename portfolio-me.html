@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kush Kumar | Software Developer & Cybersecurity Enthusiast</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --neon-green: #0aff0a;
+            --bg-dark: #050505;
+            --bg-panel: rgba(10, 10, 20, 0.7);
+            --text-main: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            cursor: none; /* Hide default cursor */
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-purple);
+            box-shadow: 0 0 10px var(--neon-purple);
+        }
+
+        /* Fonts */
+        .font-cyber {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--neon-blue);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease, background 0.2s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-hover {
+            transform: scale(1.5);
+            background: rgba(0, 243, 255, 0.3);
+            border-color: var(--neon-purple);
+        }
+
+        /* Loading Screen */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: #fff;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .loader-text::before, .loader-text::after {
+            content: 'INITIALIZING SYSTEM...';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .loader-text::before {
+            color: var(--neon-blue);
+            animation: glitch-1 2s infinite linear alternate-reverse;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+        }
+        .loader-text::after {
+            color: var(--neon-purple);
+            animation: glitch-2 3s infinite linear alternate-reverse;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+        }
+
+        @keyframes glitch-1 {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes glitch-2 {
+            0% { transform: translate(0); }
+            20% { transform: translate(2px, -2px); }
+            40% { transform: translate(2px, 2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(-2px, 2px); }
+            100% { transform: translate(0); }
+        }
+
+        .loader-bar-container {
+            width: 200px;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .loader-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            width: 0%;
+            animation: load 2s ease-out forwards;
+        }
+
+        @keyframes load {
+            to { width: 100%; }
+        }
+
+        /* Three.js Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(10, 10, 26, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2), 0 25px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Section Reveal */
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glowing Text */
+        .text-glow-blue {
+            text-shadow: 0 0 5px rgba(0, 243, 255, 0.7), 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+        .text-glow-purple {
+            text-shadow: 0 0 5px rgba(188, 19, 254, 0.7), 0 0 15px rgba(188, 19, 254, 0.5);
+        }
+
+        /* Hero Animation */
+        .hero-title span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Buttons */
+        .btn-cyber {
+            position: relative;
+            padding: 12px 30px;
+            background: transparent;
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            overflow: hidden;
+            transition: color 0.4s ease;
+            z-index: 1;
+        }
+
+        .btn-cyber::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--neon-blue);
+            z-index: -1;
+            transition: width 0.4s ease;
+        }
+
+        .btn-cyber:hover {
+            color: #000;
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        .btn-cyber:hover::before {
+            width: 100%;
+        }
+
+        .btn-outline-cyber {
+            border-color: var(--neon-purple);
+            color: var(--neon-purple);
+        }
+        .btn-outline-cyber::before {
+            background: var(--neon-purple);
+        }
+        .btn-outline-cyber:hover {
+            box-shadow: 0 0 20px var(--neon-purple);
+        }
+
+        /* Timeline */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: #000;
+            border: 2px solid var(--neon-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        /* Form Inputs */
+        .cyber-input {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            padding: 15px;
+            color: #fff;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .cyber-input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+        }
+
+        /* Mobile Nav */
+        .mobile-nav {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-nav.open {
+            transform: translateX(0);
+        }
+
+        /* Scanline effect */
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
+            background-size: 100% 4px;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Scanlines Overlay -->
+    <div class="scanlines"></div>
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-text">INITIALIZING SYSTEM...</div>
+        <div class="loader-bar-container">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Three.js Canvas Container -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent">
+        <a href="#" class="font-cyber text-sm tracking-widest text-glow-blue">
+            i_am_kushk<span class="text-[var(--neon-purple)]">
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="#about" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors">About</a>
+            <a href="#skills" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors">Skills</a>
+            <a href="#projects" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors">Projects</a>
+            <a href="#contact" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors">Contact</a>
+        </div>
+
+        <button id="menu-btn" class="md:hidden text-[var(--neon-blue)] z-50">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-nav" class="mobile-nav fixed inset-0 bg-black/95 z-40 flex flex-col items-center justify-center gap-8">
+        <a href="#about" class="text-2xl font-cyber text-[var(--neon-blue)] mobile-link">About</a>
+        <a href="#skills" class="text-2xl font-cyber text-[var(--neon-blue)] mobile-link">Skills</a>
+        <a href="#projects" class="text-2xl font-cyber text-[var(--neon-blue)] mobile-link">Projects</a>
+        <a href="#contact" class="text-2xl font-cyber text-[var(--neon-blue)] mobile-link">Contact</a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="relative z-10">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center px-6 relative">
+            <div class="text-center max-w-5xl mx-auto relative z-10">
+                <p class="font-cyber text-xs md:text-sm tracking-[0.3em] text-[var(--neon-purple)] mb-4 uppercase">Welcome to my Portfolio</p>
+                
+                <h1 class="font-cyber text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-white hero-title">
+                    <span style="animation-delay: 0.1s">K</span><span style="animation-delay: 0.2s">u</span><span style="animation-delay: 0.3s">s</span><span style="animation-delay: 0.4s">h</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--neon-blue)] to-[var(--neon-purple)]" style="animation-delay: 0.5s">K</span><span style="animation-delay: 0.6s">u</span><span style="animation-delay: 0.7s">m</span><span style="animation-delay: 0.8s">a</span><span style="animation-delay: 0.9s">r</span>
+                </h1>
+
+                <div class="h-8 mb-6">
+                    <p id="typed-text" class="text-xl md:text-2xl text-[var(--text-main)]"></p>
+                </div>
+
+                <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+                    "Building smart systems, secure applications, and innovative digital experiences."
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#projects" class="btn-cyber hover:cursor-pointer">View Projects</a>
+                    <a href="#contact" class="btn-cyber btn-outline-cyber hover:cursor-pointer">Contact Me</a>
+                    <a href="kush_resume_updated.pdf" download="Kush_Kumar_CV.pdf" class="btn-cyber hover:cursor-pointer bg-transparent border-white/20 text-white hover:border-white hover:text-black">
+                        Download my CV
+                    </a>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2">
+                <span class="text-xs tracking-widest text-gray-500">GO DOWN</span>
+                <div class="w-px h-8 bg-gradient-to-b from-[var(--neon-blue)] to-transparent animate-pulse"></div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-32 px-6 relative">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Column: Decorative/Visual -->
+                <div class="section-reveal hidden lg:block relative">
+                    <div class="glass-card p-8 relative overflow-hidden h-96">
+                        <!-- Decorative Code Snippet Background -->
+                        <pre class="text-[var(--neon-blue)] text-xs opacity-70 absolute -top-4 -left-4 leading-relaxed select-none">
+package main
+
+    // Cybersecurity Engineer Workspace
+
+    func main() {
+
+        project := "Secure Student Platform"
+        stack := []string{
+            "Flutter",
+            "Firebase",
+            "MongoDB",
+            "Cybersecurity Tools",
+        }
+
+        for _, tech := range stack {
+            fmt.Println("Initializing:", tech)
+        }
+
+        fmt.Println("System Ready")
+    }
+                        </pre>
+                        <div class="absolute bottom-0 right-0 w-64 h-64 bg-[var(--neon-purple)] opacity-10 rounded-full blur-3xl"></div>                        <!-- Profile Image Placeholder -->
+                        <div class="absolute bottom-10 right-10 w-48 h-48 rounded border border-[var(--neon-blue)]/50 p-1 overflow-hidden">
+                             <img src="./profile_picture.png" alt="Kush Kumar profile picture" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Content -->
+                <div class="section-reveal" style="transition-delay: 0.2s;">
+                    <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-blue)] mb-2">01 // ABOUT</h2>
+                    <h3 class="font-cyber text-4xl md:text-5xl font-bold mb-8 text-white">
+                        Who is <span class="text-glow-blue">Kush Kumar</span>?
+                    </h3>
+                    
+                    <div class="space-y-6 text-lg text-gray-300 leading-relaxed">
+                        <p>
+                            A passionate software developer focused on building innovative applications and smart digital systems. My expertise spans across mobile development, real-time tracking systems, and secure backend architectures.
+                        </p>
+                        <p>
+                            I have extensive experience in <span class="text-[var(--neon-blue)]">Flutter development</span>, Firebase integration, and modern app architectures. I thrive on challenges that involve AI-powered applications and cybersecurity implementations.
+                        </p>
+                        <p>
+                            My goal is to build impactful software solutions that solve real-world problems, enhance digital security, and improve user experiences globally.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-32 px-6 bg-[#020202] relative">
+            <!-- Grid Background -->
+            <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 40px 40px;"></div>
+            
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="text-center mb-16 section-reveal">
+                    <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-purple)] mb-2">02 // ARSENAL</h2>
+                    <h3 class="font-cyber text-4xl md:text-5xl font-bold text-white">Skills & Technologies</h3>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Skill Card 1 -->
+                    <div class="section-reveal glass-card p-8 group hover:border-[var(--neon-blue)] transition-all duration-500">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="font-cyber text-xl font-bold text-white">Programming</h4>
+                            <svg class="w-6 h-6 text-[var(--neon-blue)] group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag">Dart</span>
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+
+                    <!-- Skill Card 2 -->
+                    <div class="section-reveal glass-card p-8 group hover:border-[var(--neon-purple)] transition-all duration-500" style="transition-delay: 0.1s;">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="font-cyber text-xl font-bold text-white">Frameworks</h4>
+                            <svg class="w-6 h-6 text-[var(--neon-purple)] group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Next.js</span>
+                        </div>
+                    </div>
+
+                    <!-- Skill Card 3 -->
+                    <div class="section-reveal glass-card p-8 group hover:border-[var(--neon-green)] transition-all duration-500" style="transition-delay: 0.2s;">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="font-cyber text-xl font-bold text-white">Backend</h4>
+                            <svg class="w-6 h-6 text-[var(--neon-green)] group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"></path></svg>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Firestore</span>
+                            <span class="tech-tag">REST APIs</span>
+                        </div>
+                    </div>
+
+                    <!-- Skill Card 4: Wide -->
+                    <div class="section-reveal glass-card p-8 md:col-span-2 lg:col-span-3 hover:border-white/30 transition-all duration-500" style="transition-delay: 0.3s;">
+                        <h4 class="font-cyber text-xl font-bold text-white mb-4">Other Expertise</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-gray-400">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-[var(--neon-blue)] rounded-full"></div> Google Maps API
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-[var(--neon-purple)] rounded-full"></div> Real-time Tracking
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-[var(--neon-green)] rounded-full"></div> UI/UX Design
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-red-500 rounded-full"></div> Mobile Apps
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div> Cybersecurity
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-32 px-6 relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 section-reveal">
+                    <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-blue)] mb-2">03 // WORK</h2>
+                    <h3 class="font-cyber text-4xl md:text-5xl font-bold text-white">Featured Projects</h3>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="section-reveal glass-card overflow-hidden group">
+                        <div class="h-48 bg-gradient-to-br from-[#0f172a] to-[#0f0f23] relative flex items-center justify-center overflow-hidden">
+                            <!-- Placeholder Graphic -->
+                            <svg class="w-16 h-16 text-[var(--neon-blue)] opacity-20 group-hover:scale-125 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                            <div class="absolute bottom-2 right-2 text-xs font-cyber opacity-50">SYS_V1.0</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-cyber text-xl font-bold text-white mb-2">EV Tracking System</h4>
+                            <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">
+                                Smart EV tracking system for Central University of Jammu. Real-time student location pickup request system integrated with driver navigation.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs text-[var(--neon-blue)]">
+                                <span>Flutter</span> â€¢ <span>Firebase</span> â€¢ <span>Maps API</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="section-reveal glass-card overflow-hidden group" style="transition-delay: 0.1s;">
+                        <div class="h-48 bg-gradient-to-br from-[#1a0b2e] to-[#0a0a0a] relative flex items-center justify-center overflow-hidden">
+                            <svg class="w-16 h-16 text-[var(--neon-purple)] opacity-20 group-hover:scale-125 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                            <div class="absolute bottom-2 right-2 text-xs font-cyber opacity-50">APP_V1.0</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-cyber text-xl font-bold text-white mb-2">CUJ Student App</h4>
+                            <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">
+                                Comprehensive mobile application for students featuring AI chatbot assistance, campus utility services, and notifications.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs text-[var(--neon-purple)]">
+                                <span>Flutter</span> â€¢ <span>AI Chatbot</span> â€¢ <span>Services</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="section-reveal glass-card overflow-hidden group" style="transition-delay: 0.2s;">
+                        <div class="h-48 bg-gradient-to-br from-[#0a192f] to-[#020202] relative flex items-center justify-center overflow-hidden">
+                            <svg class="w-16 h-16 text-[var(--neon-green)] opacity-20 group-hover:scale-125 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            <div class="absolute bottom-2 right-2 text-xs font-cyber opacity-50">DRV_V1.2</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-cyber text-xl font-bold text-white mb-2">Driver EV App</h4>
+                            <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">
+                                Dedicated application for EV drivers to receive pickup requests, view student locations on map, and optimize routes.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs text-[var(--neon-green)]">
+                                <span>Flutter</span> â€¢ <span>Navigation</span> â€¢ <span>Real-time</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="py-32 px-6 bg-[#050505]">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16 section-reveal">
+                    <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-purple)] mb-2">04 // MILESTONES</h2>
+                    <h3 class="font-cyber text-4xl md:text-5xl font-bold text-white">Achievements</h3>
+                </div>
+
+                <div class="relative border-l-2 border-gray-800 ml-4 md:ml-8 space-y-12">
+                    <!-- Achievement 1 -->
+                    <div class="section-reveal relative pl-10 timeline-item">
+                        <span class="font-cyber text-xs text-[var(--neon-blue)] tracking-widest">MAJOR PROJECT</span>
+                        <h4 class="text-xl font-bold text-white mt-1">EV Tracking System Deployment</h4>
+                        <p class="text-gray-400 mt-2">Successfully developed and deployed real-time EV tracking system for Central University of Jammu, optimizing campus transport logistics.</p>
+                    </div>
+                    
+                    <!-- Achievement 2 -->
+                    <div class="section-reveal relative pl-10 timeline-item" style="transition-delay: 0.1s;">
+                        <span class="font-cyber text-xs text-[var(--neon-purple)] tracking-widest">INNOVATION</span>
+                        <h4 class="text-xl font-bold text-white mt-1">AI Chatbot Integration</h4>
+                        <p class="text-gray-400 mt-2">Integrated intelligent AI chatbot into university mobile app to assist students with queries and campus navigation.</p>
+                    </div>
+
+                    <!-- Achievement 3 -->
+                    <div class="section-reveal relative pl-10 timeline-item" style="transition-delay: 0.2s;">
+                        <span class="font-cyber text-xs text-[var(--neon-green)] tracking-widest">DEVELOPMENT</span>
+                        <h4 class="text-xl font-bold text-white mt-1">Real-Time Systems Mastery</h4>
+                        <p class="text-gray-400 mt-2">Gained advanced expertise in Firebase and real-time location tracking systems for high-performance mobile applications.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-32 px-6 relative overflow-hidden">
+            <!-- Decorative Glow -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[var(--neon-purple)] opacity-5 rounded-full blur-3xl"></div>
+
+            <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 relative z-10">
+                <div class="section-reveal">
+                    <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-blue)] mb-2">05 // CONTACT</h2>
+                    <h3 class="font-cyber text-4xl md:text-5xl font-bold text-white mb-8">Let's Connect</h3>
+                    
+                    <p class="text-gray-300 mb-8 text-lg">
+                        I am currently open to freelance projects and full-time opportunities. If you have a project in mind or just want to say hello, feel free to reach out.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-full border border-gray-700 flex items-center justify-center text-[var(--neon-blue)] group-hover:border-[var(--neon-blue)] group-hover:bg-[var(--neon-blue)]/10 transition-all">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase">Email</p>
+                                <a href="mailto:kushk3882@gmail.com" class="text-white hover:text-[var(--neon-blue)] transition-colors">kushk3882@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-full border border-gray-700 flex items-center justify-center text-[var(--neon-purple)] group-hover:border-[var(--neon-purple)] group-hover:bg-[var(--neon-purple)]/10 transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase">GitHub</p>
+                                <a href="https://github.com/kush7511" class="text-white hover:text-[var(--neon-purple)] transition-colors">https://github.com/kush7511</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="section-reveal" style="transition-delay: 0.2s;">
+                    <form class="glass-card p-8 space-y-6" id="contect-form">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-2 tracking-widest uppercase">Name</label>
+                            <input type="text" class="cyber-input rounded-none" placeholder="Name" >
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-2 tracking-widest uppercase">Email</label>
+                            <input type="email" class="cyber-input rounded-none" placeholder="Email">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-2 tracking-widest uppercase">Message</label>
+                            <textarea rows="4" class="cyber-input rounded-none resize-none" placeholder="Your message..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-cyber w-full border-[var(--neon-purple)] text-[var(--neon-purple)] hover:text-black hover:border-transparent">
+                            Send Transmission
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-8 border-t border-gray-900 px-6">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-600 text-sm">
+                    Â© 2026 <span class="text-[var(--neon-blue)]">Kush Kumar</span>
+                </p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Three.js Script -->
+    <script type="module">
+        import * as THREE from 'three';
+
+        // Setup
+        const canvas = document.getElementById('bg-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 30;
+
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Particle Geometry
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCnt = 3000;
+        const posArray = new Float32Array(particlesCnt * 3);
+        
+        for(let i = 0; i < particlesCnt * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 100; // Spread particles
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        // Material
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.1,
+            color: 0x00f3ff, // Neon Blue
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending
+        });
+
+        // Mesh
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+
+        // Second set of particles (Purple)
+        const particlesMaterial2 = new THREE.PointsMaterial({
+            size: 0.15,
+            color: 0xbc13fe, // Neon Purple
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending
+        });
+        const particlesMesh2 = new THREE.Points(particlesGeometry, particlesMaterial2);
+
+        scene.add(particlesMesh, particlesMesh2);
+
+        // Interaction
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Animation Loop
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const elapsedTime = clock.getElapsedTime();
+
+            // Rotate particles
+            particlesMesh.rotation.y = elapsedTime * 0.05;
+            particlesMesh.rotation.x = mouseY * 0.1;
+
+            particlesMesh2.rotation.y = -elapsedTime * 0.03;
+            particlesMesh2.rotation.x = -mouseY * 0.05;
+            particlesMesh2.rotation.z = mouseX * 0.05;
+
+            // Camera subtle movement
+            camera.position.x += (mouseX * 5 - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 3 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+
+    <!-- Main Logic Script -->
+    <script>
+        // --- Custom Cursor ---
+        const cursor = document.getElementById('cursor');
+        const interactiveElements = document.querySelectorAll('a, button, input, textarea, .glass-card');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+        });
+
+        // --- Loader ---
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 2500); // Delay for effect
+        });
+
+        // --- Typing Effect ---
+        const typedText = document.getElementById('typed-text');
+        const roles = [
+            "Flutter Developer",
+            "Web Developer",
+            "Cybersecurity Enthusiast",
+        ];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function type() {
+            const currentRole = roles[roleIndex];
+            let typingDelay = isDeleting ? 50 : 100;
+            
+            if (isDeleting) {
+                typedText.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedText.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            typedText.innerHTML = `<span class="text-[var(--neon-purple)]">${typedText.textContent}</span>`;
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                isDeleting = true;
+                typingDelay = 2000; // Pause at end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                typingDelay = 100;
+            }
+            
+            setTimeout(type, typingDelay);
+        }
+        
+        // Start typing after loader finishes
+        setTimeout(() => {
+            type();
+        }, 3000);
+
+        // --- Scroll Reveal ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // --- Mobile Menu ---
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+            });
+        });
+
+        // --- Smooth Scroll (Offset for Fixed Header) ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    const offsetTop = target.offsetTop - 50;
+                    window.scroll({
+                        top: offsetTop,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+    </script>
+    <!-- Firebase -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import { 
+getFirestore,
+collection,
+addDoc 
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCPnC_HusD6fzuFSbvKgLjZyV9yJb0V2yA",
+  authDomain: "kush-portfolio-550b4.firebaseapp.com",
+  projectId: "kush-portfolio-550b4",
+  storageBucket: "kush-portfolio-550b4.firebasestorage.app",
+  messagingSenderId: "821972710426",
+  appId: "1:821972710426:web:200febc33fd306ce89cda3",
+  measurementId: "G-TE5EWS6QSR"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+const form = document.querySelector("form");
+
+form.addEventListener("submit", async(e)=>{
+
+e.preventDefault();
+
+const name = form.querySelector('input[type="text"]').value;
+const email = form.querySelector('input[type="email"]').value;
+const message = form.querySelector('textarea').value;
+
+try{
+
+await addDoc(collection(db,"messages"),{
+
+name:name,
+email:email,
+message:message,
+timestamp:Date.now()
+
+});
+
+alert("Message sent successfully!");
+
+form.reset();
+
+}catch(error){
+
+alert("Error sending message");
+
+console.log(error);
+
+}
+
+});
+
+</script>
+</body>
+</html>
+
+
