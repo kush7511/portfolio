@@ -337,7 +337,7 @@
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent">
-        <a href="#" class="font-cyber text-2xl font-bold text-glow-blue">
+        <a href="#" class="font-cyber text-sm tracking-widest text-glow-blue">
             i_am_kushk<span class="text-[var(--neon-purple)]">
         </a>
 
@@ -408,22 +408,31 @@
                     <div class="glass-card p-8 relative overflow-hidden h-96">
                         <!-- Decorative Code Snippet Background -->
                         <pre class="text-[var(--neon-blue)] text-xs opacity-70 absolute -top-4 -left-4 leading-relaxed select-none">
-func main() {
-    status := "Securing Systems"
-    for {
-        fmt.Println(status)
-        time.Sleep(1 * time.Second)
-        status = iterate(status)
+package main
+
+    // Cybersecurity Engineer Workspace
+
+    func main() {
+
+        project := "Secure Student Platform"
+        stack := []string{
+            "Flutter",
+            "Firebase",
+            "MongoDB",
+            "Cybersecurity Tools",
+        }
+
+        for _, tech := range stack {
+            fmt.Println("Initializing:", tech)
+        }
+
+        fmt.Println("System Ready")
     }
-}
                         </pre>
-                        <div class="absolute bottom-0 right-0 w-64 h-64 bg-[var(--neon-purple)] opacity-10 rounded-full blur-3xl"></div>
-                        
+                        <div class="absolute bottom-0 right-0 w-64 h-64 bg-[var(--neon-purple)] opacity-10 rounded-full blur-3xl"></div>                        
                         <!-- Profile Image Placeholder -->
-                        <div class="absolute bottom-10 right-10 w-48 h-48 rounded border border-[var(--neon-blue)]/50 p-1">
-                             <div class="w-full h-full bg-gradient-to-br from-[var(--neon-blue)]/20 to-[var(--neon-purple)]/20 flex items-center justify-center text-5xl font-cyber text-white/20">
-                                Kush
-                             </div>
+                        <div class="absolute bottom-10 right-10 w-48 h-48 rounded border border-[var(--neon-blue)]/50 p-1 overflow-hidden">
+                             <img src="./profile_picture.png" alt="Kush Kumar profile picture" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
@@ -549,7 +558,7 @@ func main() {
                                 Smart EV tracking system for Central University of Jammu. Real-time student location pickup request system integrated with driver navigation.
                             </p>
                             <div class="flex flex-wrap gap-2 text-xs text-[var(--neon-blue)]">
-                                <span>Flutter</span> â€¢ <span>Firebase</span> â€¢ <span>Maps API</span>
+                                <span>Flutter</span> * <span>Firebase</span> * <span>Maps API</span>
                             </div>
                         </div>
                     </div>
@@ -566,7 +575,7 @@ func main() {
                                 Comprehensive mobile application for students featuring AI chatbot assistance, campus utility services, and notifications.
                             </p>
                             <div class="flex flex-wrap gap-2 text-xs text-[var(--neon-purple)]">
-                                <span>Flutter</span> â€¢ <span>AI Chatbot</span> â€¢ <span>Services</span>
+                                <span>Flutter</span> * <span>AI Chatbot</span> * <span>Services</span>
                             </div>
                         </div>
                     </div>
@@ -583,7 +592,7 @@ func main() {
                                 Dedicated application for EV drivers to receive pickup requests, view student locations on map, and optimize routes.
                             </p>
                             <div class="flex flex-wrap gap-2 text-xs text-[var(--neon-green)]">
-                                <span>Flutter</span> â€¢ <span>Navigation</span> â€¢ <span>Real-time</span>
+                                <span>Flutter</span> * <span>Navigation</span> * <span>Real-time</span>
                             </div>
                         </div>
                     </div>
@@ -964,3 +973,5 @@ console.log(error);
 </script>
 </body>
 </html>
+
+
