@@ -111,7 +111,7 @@
         }
 
         .loader-text::before, .loader-text::after {
-            content: 'INITIALIZING SYSTEM...';
+            content: attr(data-text);
             position: absolute;
             top: 0;
             left: 0;
@@ -328,7 +328,7 @@
 
     <!-- Loading Screen -->
     <div id="loader">
-        <div class="loader-text">INITIALIZING SYSTEM...</div>
+        <div class="loader-text" id="loader-quote">INITIALIZING SYSTEM...</div>
         <div class="loader-bar-container">
             <div class="loader-bar"></div>
         </div>
@@ -340,7 +340,7 @@
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent">
         <a href="#" class="font-cyber text-sm tracking-widest text-glow-blue">
-            i_am_kushk<span class="text-[var(--neon-purple)]">
+            @ i_am_kushk<span class="text-[var(--neon-purple)]">
         </a>
 
         <div class="hidden md:flex items-center gap-8">
@@ -409,7 +409,7 @@
                 <div class="section-reveal hidden lg:block relative">
                     <div class="glass-card p-8 relative overflow-hidden h-96">
                         <!-- Decorative Code Snippet Background -->
-                        <pre class="text-green-400 text-xs opacity-70 absolute -top-4 -left-4 leading-relaxed select-none">
+                        <pre class="text-dark-400 text-blue-400 text-xs opacity-70 absolute -top-4 -left-4 leading-relaxed select-none">
 package main
 
     // Cybersecurity Engineer Workspace
@@ -706,7 +706,7 @@ package main
         <footer class="py-8 border-t border-gray-900 px-6">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-gray-600 text-sm">
-                    Â© 2026 <span class="text-[var(--neon-blue)]">Kush Kumar</span>
+                    &copy;2026 <span class="text-[var(--neon-blue)]">Kush Kumar</span>
                 </p>
             </div>
         </footer>
@@ -804,7 +804,6 @@ package main
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
     </script>
-
     <!-- Main Logic Script -->
     <script>
         // --- Custom Cursor ---
@@ -916,6 +915,45 @@ package main
                 }
             });
         });
+    </script>
+    <script>
+        const loaderQuote = document.getElementById("loader-quote");
+        const quotes = [
+            "Securing systems, one line of code at a time.",
+            "Think like a hacker, build like a developer.",
+            "Security is not a feature, it's a mindset."
+        ];
+
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
+        let i = 0;
+        loaderQuote.textContent = "";
+
+        function typeLoaderQuote() {
+            if (i < randomQuote.length) {
+                loaderQuote.textContent += randomQuote.charAt(i);
+                loaderQuote.setAttribute("data-text", loaderQuote.textContent);
+                i++;
+                setTimeout(typeLoaderQuote, 50);
+            }
+        }
+        typeLoaderQuote();
+        const gradients = [
+    "linear-gradient(90deg, #00f3ff, #bc13fe)",
+    "linear-gradient(90deg, #0aff0a, #00f3ff)",
+    "linear-gradient(90deg, #bc13fe, #ff00ff)"
+];
+
+function applyGradientText() {
+    const gradient = gradients[Math.floor(Math.random() * gradients.length)];
+    loaderQuote.style.background = gradient;
+    loaderQuote.style.webkitBackgroundClip = "text";
+    loaderQuote.style.webkitTextFillColor = "transparent";
+    loaderQuote.style.textShadow = "0 0 15px rgba(255,255,255,0.3)";
+}
+applyGradientText();
+
+
     </script>
     <!-- Firebase -->
 <script type="module">
