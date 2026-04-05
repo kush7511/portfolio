@@ -348,6 +348,82 @@
             background-size: 100% 4px;
             opacity: 0.1;
         }
+
+        .about-code-art {
+            font-size: 0.72rem;
+            max-width: 100%;
+        }
+
+        .github-stats-image {
+            width: min(100%, 600px);
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .skill-icon-strip img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (pointer: coarse), (max-width: 768px) {
+            body {
+                cursor: auto;
+            }
+
+            .cursor,
+            .scanlines {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding-top: 1rem !important;
+                padding-bottom: 1rem !important;
+            }
+
+            #hero,
+            #about,
+            #skills,
+            #projects,
+            #achievements,
+            #contact {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            #hero {
+                min-height: auto;
+                padding-top: 7rem;
+                padding-bottom: 4rem;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 13vw, 4rem) !important;
+                line-height: 1.05;
+                word-break: break-word;
+            }
+
+            #typed-text {
+                font-size: 1rem;
+            }
+
+            .btn-cyber {
+                width: 100%;
+                text-align: center;
+                padding: 0.95rem 1.1rem;
+            }
+
+            .about-code-art {
+                font-size: 0.56rem;
+                line-height: 1.45;
+            }
+
+            .contact-link {
+                overflow-wrap: anywhere;
+            }
+        }
     </style>
 </head>
 <body>
@@ -437,12 +513,12 @@
 
         <!-- About Section -->
         <section id="about" class="py-32 px-6 relative">
-            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
                 <!-- Left Column: Decorative/Visual -->
-                <div class="section-reveal hidden lg:block relative">
-                    <div class="glass-card p-8 relative overflow-hidden h-96">
+                <div class="section-reveal relative order-1">
+                    <div class="glass-card p-6 md:p-8 relative overflow-hidden h-[22rem] sm:h-96">
                         <!-- Decorative Code Snippet Background -->
-                        <pre class="text-dark-400 text-blue-400 text-xs opacity-70 absolute -top-4 -left-4 leading-relaxed select-none">
+                        <pre class="about-code-art text-dark-400 text-blue-400 opacity-70 absolute top-4 left-4 right-4 leading-relaxed select-none overflow-hidden">
 package main
 
     // Cybersecurity Engineer Workspace
@@ -464,16 +540,16 @@ package main
         fmt.Println("System Ready")
     }
                         </pre>
-                        <div class="absolute bottom-0 right-0 w-64 h-64 bg-[var(--neon-purple)] opacity-10 rounded-full blur-3xl"></div>                        
+                        <div class="absolute bottom-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-[var(--neon-purple)] opacity-10 rounded-full blur-3xl"></div>                        
                         <!-- Profile Image Placeholder -->
-                        <div class="absolute bottom-20 right-10 w-48 h-48 rounded border border-[var(--neon-blue)]/50 p-1 overflow-hidden">
+                        <div class="absolute bottom-6 right-6 sm:bottom-20 sm:right-10 w-32 h-32 sm:w-48 sm:h-48 rounded border border-[var(--neon-blue)]/50 p-1 overflow-hidden shadow-[0_0_25px_rgba(0,243,255,0.18)]">
                              <img src="./pp4.jpeg" alt="Kush Kumar profile picture" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
 
                 <!-- Right Column: Content -->
-                <div class="section-reveal" style="transition-delay: 0.2s;">
+                <div class="section-reveal order-2" style="transition-delay: 0.2s;">
                     <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-blue)] mb-2">01 // ABOUT</h2>
                     <h3 class="font-cyber text-4xl md:text-5xl font-bold mb-8 text-white">
                         Who am <span class="text-glow-blue">I</span> ?
@@ -512,7 +588,7 @@ package main
                             <h4 class="font-cyber text-xl font-bold text-white">Programming</h4>
                             <svg class="w-6 h-6 text-[var(--neon-blue)] group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                         </div>
-                        <div class="flex flex-wrap gap-2">
+                        <div class="skill-icon-strip flex flex-wrap gap-2">
                             <img src="https://skillicons.dev/icons?i=dart,java,js,python" />
                         </div>
                     </div>
@@ -523,7 +599,7 @@ package main
                             <h4 class="font-cyber text-xl font-bold text-white">Frameworks</h4>
                             <svg class="w-6 h-6 text-[var(--neon-purple)] group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                         </div>
-                        <div class="flex flex-wrap gap-2">
+                        <div class="skill-icon-strip flex flex-wrap gap-2">
                             <img src="https://skillicons.dev/icons?i=flutter,react,nextjs" />
                         </div>
                     </div>
@@ -534,7 +610,7 @@ package main
                             <h4 class="font-cyber text-xl font-bold text-white">Backend</h4>
                             <svg class="w-6 h-6 text-[var(--neon-green)] group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"></path></svg>
                         </div>
-                        <div class="flex flex-wrap gap-2">
+                        <div class="skill-icon-strip flex flex-wrap gap-2">
                            <img src="https://skillicons.dev/icons?i=firebase,googleapi" />
                         </div>
                     </div>
@@ -582,10 +658,10 @@ package main
                         </div>
                         <div class="p-6">
                             <h4 class="font-cyber text-xl font-bold text-white mb-2">EV Tracking System</h4>
-                            <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">
+                            <p class="text-sm text-gray-400 mb-4 min-h-[4rem] md:h-16">
                                 Smart EV tracking system for Central University of Jammu. Real-time student location pickup request system integrated with driver navigation.
                             </p>
-                            <div class="flex flex-wrap gap-2 text-xs text-[var(--neon-blue)]">
+                            <div class="skill-icon-strip flex flex-wrap gap-2 text-xs text-[var(--neon-blue)]">
                                 <span><img src="https://skillicons.dev/icons?i=flutter,firebase,googlecloud" /></span>
                             </div>
                         </div>
@@ -599,10 +675,10 @@ package main
                         </div>
                         <div class="p-6">
                             <h4 class="font-cyber text-xl font-bold text-white mb-2">CUJ Student App</h4>
-                            <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">
+                            <p class="text-sm text-gray-400 mb-4 min-h-[4rem] md:h-16">
                                 Comprehensive mobile application for students featuring AI chatbot assistance, campus utility services, and notifications.
                             </p>
-                            <div class="flex flex-wrap gap-2 text-xs text-[var(--neon-purple)]">
+                            <div class="skill-icon-strip flex flex-wrap gap-2 text-xs text-[var(--neon-purple)]">
                                 <span><img src="https://skillicons.dev/icons?i=flutter,ai,firebase,googlecloud" /></span>
                             </div>
                         </div>
@@ -616,10 +692,10 @@ package main
                         </div>
                         <div class="p-6">
                             <h4 class="font-cyber text-xl font-bold text-white mb-2">Driver EV App</h4>
-                            <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">
+                            <p class="text-sm text-gray-400 mb-4 min-h-[4rem] md:h-16">
                                 Dedicated application for EV drivers to receive pickup requests, view student locations on map, and optimize routes.
                             </p>
-                            <div class="flex flex-wrap gap-2 text-xs text-[var(--neon-green)]">
+                            <div class="skill-icon-strip flex flex-wrap gap-2 text-xs text-[var(--neon-green)]">
                                 <span><img src="https://skillicons.dev/icons?i=flutter,firebase,googlecloud,googlemaps" /></span>
                             </div>
                         </div>
@@ -669,7 +745,7 @@ package main
     <br>
     <br>            
     <center>
-       <img src="https://github-readme-streak-stats.herokuapp.com/?user=kush7511&theme=radical" width="600"/>
+       <img src="https://github-readme-streak-stats.herokuapp.com/?user=kush7511&theme=radical" alt="Kush Kumar GitHub streak stats" class="github-stats-image"/>
     </center>
 </section>
         <!--Stat section ends here-->
@@ -694,7 +770,7 @@ package main
                             </div>
                             <div>
                                 <p class="text-xs text-gray-500 uppercase">Email</p>
-                                <a href="mailto:kushk3882@gmail.com" class="text-white hover:text-[var(--neon-blue)] transition-colors">Mail me</a>
+                                <a href="mailto:kushk3882@gmail.com" class="contact-link text-white hover:text-[var(--neon-blue)] transition-colors">Mail me</a>
                             </div>
                         </div>
 
@@ -704,7 +780,7 @@ package main
                             </div>
                             <div>
                                 <p class="text-xs text-gray-500 uppercase">GitHub</p>
-                                <a href="https://github.com/kush7511" class="text-white hover:text-[var(--neon-purple)] transition-colors">Follow me on Github</a>
+                                <a href="https://github.com/kush7511" class="contact-link text-white hover:text-[var(--neon-purple)] transition-colors">Follow me on Github</a>
                             </div>
                         </div>
                         <div class="flex items-center gap-4 group">
@@ -713,7 +789,7 @@ package main
                             </div>
                             <div>
                                 <p class="text-xs text-gray-500 uppercase">LinkedIn</p>
-                                <a href="https://www.linkedin.com/in/kushk3882/" class="text-white hover:text-[var(--neon-purple)] transition-colors">Let's Connect on LinkedIn</a>
+                                <a href="https://www.linkedin.com/in/kushk3882/" class="contact-link text-white hover:text-[var(--neon-purple)] transition-colors">Let's Connect on LinkedIn</a>
                             </div>
                         </div>
 
@@ -722,7 +798,7 @@ package main
 
                 
                 <!-- Contact Form -->
-                <div class="section-reveal" style="transition-delay: 0.2s;">
+                <div class="section-reveal order-2" style="transition-delay: 0.2s;">
                     <form class="glass-card p-8 space-y-6" id="contect-form">
                         <div>
                             <label class="block text-xs text-gray-400 mb-2 tracking-widest uppercase">Name</label>
