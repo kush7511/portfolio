@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">.<meta name="description" content="Kush Kumar - Flutter Developer, Cybersecurity Enthusiast">
+    <meta charset="UTF-8">
+    <meta name="description" content="Kush Kumar - Flutter Developer, Cybersecurity Enthusiast">
     <meta name="keywords" content="Kush kumar, Kush kumar Agra, Kush kumar Central University of Jammu,Flutter Developer, Portfolio, Cybersecurity">
     <meta name="author" content="Kush Kumar">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -361,6 +362,127 @@
             margin: 0 auto;
         }
 
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .mini-stat {
+            padding: 1.1rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(5, 8, 18, 0.58);
+            backdrop-filter: blur(10px);
+        }
+
+        .mini-stat strong {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 0.35rem;
+        }
+
+        .mini-stat span {
+            color: #9ca3af;
+            font-size: 0.92rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 0.9rem;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            background: rgba(0, 243, 255, 0.08);
+            color: #d1fae5;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .status-pill::before {
+            content: '';
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 9999px;
+            background: var(--neon-green);
+            box-shadow: 0 0 12px var(--neon-green);
+        }
+
+        .service-card,
+        .process-card,
+        .insight-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after,
+        .process-card::after,
+        .insight-card::after {
+            content: '';
+            position: absolute;
+            inset: auto -20% -45% auto;
+            width: 10rem;
+            height: 10rem;
+            border-radius: 9999px;
+            filter: blur(40px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .service-card::after {
+            background: var(--neon-blue);
+        }
+
+        .process-card::after {
+            background: var(--neon-purple);
+        }
+
+        .insight-card::after {
+            background: var(--neon-green);
+        }
+
+        .availability-card {
+            background:
+                linear-gradient(135deg, rgba(188, 19, 254, 0.16), rgba(0, 243, 255, 0.06)),
+                rgba(9, 11, 20, 0.8);
+        }
+
+        .back-to-top {
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 243, 255, 0.35);
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--neon-blue);
+            z-index: 60;
+            opacity: 0;
+            transform: translateY(16px);
+            pointer-events: none;
+            transition: all 0.25s ease;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .form-status {
+            min-height: 1.5rem;
+            font-size: 0.92rem;
+            color: #9ca3af;
+        }
+
         .skill-icon-strip img {
             max-width: 100%;
             height: auto;
@@ -381,13 +503,17 @@
             nav {
                 padding-top: 1rem !important;
                 padding-bottom: 1rem !important;
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
             }
 
             #hero,
             #about,
             #skills,
+            #services,
             #projects,
             #achievements,
+            #process,
             #contact {
                 padding-left: 1rem !important;
                 padding-right: 1rem !important;
@@ -397,6 +523,17 @@
                 min-height: auto;
                 padding-top: 7rem;
                 padding-bottom: 4rem;
+            }
+
+            #about,
+            #skills,
+            #services,
+            #projects,
+            #achievements,
+            #process,
+            #contact {
+                padding-top: 5rem !important;
+                padding-bottom: 5rem !important;
             }
 
             .hero-title {
@@ -415,13 +552,85 @@
                 padding: 0.95rem 1.1rem;
             }
 
+            .stats-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .mini-stat {
+                text-align: center;
+            }
+
+            .status-pill {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
             .about-code-art {
                 font-size: 0.56rem;
                 line-height: 1.45;
             }
 
+            .glass-card {
+                padding-left: 1.1rem;
+                padding-right: 1.1rem;
+            }
+
+            .timeline-item {
+                padding-left: 1.75rem !important;
+            }
+
+            .timeline-item::before {
+                left: -1.05rem;
+            }
+
             .contact-link {
                 overflow-wrap: anywhere;
+            }
+
+            .back-to-top {
+                right: 1rem;
+                bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: clamp(2.35rem, 14vw, 3.5rem) !important;
+            }
+
+            .loader-text {
+                font-size: 1.35rem;
+                text-align: center;
+                padding-inline: 1rem;
+            }
+
+            .loader-bar-container {
+                width: min(82vw, 220px);
+            }
+
+            .github-stats-image {
+                width: 100%;
+            }
+
+            .service-card,
+            .process-card,
+            .insight-card,
+            #contect-form {
+                padding: 1.15rem !important;
+            }
+
+            .skill-icon-strip {
+                justify-content: center;
+            }
+
+            .availability-card,
+            .insight-card {
+                margin-top: 1.5rem;
             }
         }
     </style>
@@ -455,6 +664,7 @@
             <a href="#about" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors">About</a>
             <a href="#skills" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors">Skills</a>
             <a href="#projects" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors">Projects</a>
+            <a href="#services" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors">Services</a>
             <a href="#contact" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors">Contact</a>
             <a href="https://www.instagram.com/" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors" target="_blank" rel="noopener noreferrer">Instagram</a>
         </div>
@@ -467,11 +677,15 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobile-nav" class="mobile-nav fixed inset-0 bg-black/95 z-40 flex flex-col items-center justify-center gap-8">
+    <div id="mobile-nav" class="mobile-nav fixed inset-0 bg-black/95 z-40 flex flex-col items-center justify-center gap-6 px-6 text-center overflow-y-auto">
         <a href="#about" class="text-2xl font-cyber text-[var(--neon-blue)] mobile-link">About</a>
         <a href="#skills" class="text-2xl font-cyber text-[var(--neon-blue)] mobile-link">Skills</a>
+        <a href="#services" class="text-2xl font-cyber text-[var(--neon-blue)] mobile-link">Services</a>
         <a href="#projects" class="text-2xl font-cyber text-[var(--neon-blue)] mobile-link">Projects</a>
+        <a href="#achievements" class="text-2xl font-cyber text-[var(--neon-blue)] mobile-link">Achievements</a>
+        <a href="#process" class="text-2xl font-cyber text-[var(--neon-blue)] mobile-link">Workflow</a>
         <a href="#contact" class="text-2xl font-cyber text-[var(--neon-blue)] mobile-link">Contact</a>
+        <a href="https://www.instagram.com/" class="text-2xl font-cyber text-[var(--neon-blue)] mobile-link" target="_blank" rel="noopener noreferrer">Instagram</a>
     </div>
 
     <!-- Main Content -->
@@ -497,10 +711,30 @@
 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="#projects" class="btn-cyber hover:cursor-pointer">View Projects</a>
+                    <a href="#services" class="btn-cyber hover:cursor-pointer border-[var(--neon-green)] text-[var(--neon-green)] hover:text-black">Explore Services</a>
                     <a href="#contact" class="btn-cyber btn-outline-cyber hover:cursor-pointer">Contact Me</a>
                     <a href="kush_resume_updated.pdf" download="Kush_Kumar_CV.pdf" class="btn-cyber hover:cursor-pointer bg-transparent border-white/20 text-white hover:border-white hover:text-black">
                         Download my CV
                     </a>
+                </div>
+
+                <div class="stats-grid max-w-4xl mx-auto">
+                    <div class="mini-stat glass-card">
+                        <strong>3+</strong>
+                        <span>Production Apps</span>
+                    </div>
+                    <div class="mini-stat glass-card">
+                        <strong>Flutter</strong>
+                        <span>Core Stack</span>
+                    </div>
+                    <div class="mini-stat glass-card">
+                        <strong>Realtime</strong>
+                        <span>Systems Focus</span>
+                    </div>
+                    <div class="mini-stat glass-card">
+                        <strong>Open</strong>
+                        <span>For Freelance & Roles</span>
+                    </div>
                 </div>
             </div>
 
@@ -524,19 +758,16 @@ package main
     // Cybersecurity Engineer Workspace
 
     func main() {
-
-        project := "Secure Student Platform"
+        project := "My portfolio"
         stack := []string{
             "Flutter",
             "Firebase",
             "MongoDB",
             "Cybersecurity Tools",
         }
-
         for _, tech := range stack {
             fmt.Println("Initializing:", tech)
         }
-        
         fmt.Println("System Ready")
     }
                         </pre>
@@ -554,13 +785,17 @@ package main
                     <h3 class="font-cyber text-4xl md:text-5xl font-bold mb-8 text-white">
                         Who am <span class="text-glow-blue">I</span> ?
                     </h3>
+                    <div class="mb-6">
+                        <span class="status-pill">Available for impactful builds</span>
+                    </div>
                     
                     <div class="space-y-6 text-lg text-gray-300 leading-relaxed">
                         <p>
-                            A passionate software developer focused on building innovative applications and smart digital systems. My expertise spans across mobile development, real-time tracking systems, and secure backend architectures.
-                        </p>
-                        <p>
-                            I have extensive experience in <span class="text-[var(--neon-blue)]">Flutter development</span>, Firebase integration, and modern app architectures. I thrive on challenges that involve AI-powered applications and cybersecurity implementations.
+                            I am a B.Tech - Cybersecurity Engineering student at Central University of Jammu with a strong interest in mobile application development and database systems.
+                            Experienced in building applications using Flutter, Dart, Firebase, and MongoDB, with hands-on
+                            experience in developing a college student dashboard application featuring authentication,
+                            notifications, and database integration. Skilled in Android app deployment, debugging, and
+                            backend connectivity, with a focus on building scalable and user-centric solutions.
                         </p>
                         <p>
                             My goal is to build impactful software solutions that solve real-world problems, enhance digital security, and improve user experiences globally.
@@ -640,11 +875,45 @@ package main
             </div>
         </section>
 
+        <section id="services" class="py-32 px-6 bg-[#04060d] relative overflow-hidden">
+            <div class="absolute inset-0 opacity-20" style="background: radial-gradient(circle at top right, rgba(188,19,254,0.25), transparent 35%), radial-gradient(circle at bottom left, rgba(0,243,255,0.18), transparent 30%);"></div>
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="text-center mb-16 section-reveal">
+                    <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-green)] mb-2">03 // SERVICES</h2>
+                    <h3 class="font-cyber text-4xl md:text-5xl font-bold text-white">What I Can Build</h3>
+                    <p class="text-gray-400 max-w-3xl mx-auto mt-5 text-lg">A stronger portfolio feels more credible when it clearly shows outcomes, not just tools. These are the types of systems and product experiences I am ready to deliver.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <article class="section-reveal glass-card service-card p-8">
+                        <p class="font-cyber text-xs tracking-[0.25em] text-[var(--neon-blue)] mb-4">01</p>
+                        <h4 class="font-cyber text-xl text-white mb-3">Mobile Apps</h4>
+                        <p class="text-gray-400 leading-relaxed">Cross-platform Flutter apps with responsive UI, structured state, and production-ready Firebase workflows.</p>
+                    </article>
+                    <article class="section-reveal glass-card service-card p-8" style="transition-delay: 0.1s;">
+                        <p class="font-cyber text-xs tracking-[0.25em] text-[var(--neon-purple)] mb-4">02</p>
+                        <h4 class="font-cyber text-xl text-white mb-3">Realtime Systems</h4>
+                        <p class="text-gray-400 leading-relaxed">Live location, instant updates, event tracking, and dashboard-driven flows for logistics or campus-style operations.</p>
+                    </article>
+                    <article class="section-reveal glass-card service-card p-8" style="transition-delay: 0.2s;">
+                        <p class="font-cyber text-xs tracking-[0.25em] text-[var(--neon-green)] mb-4">03</p>
+                        <h4 class="font-cyber text-xl text-white mb-3">Secure Backends</h4>
+                        <p class="text-gray-400 leading-relaxed">Firebase-powered backends, role-based flows, cloud integrations, and security-minded architecture choices.</p>
+                    </article>
+                    <article class="section-reveal glass-card service-card p-8" style="transition-delay: 0.3s;">
+                        <p class="font-cyber text-xs tracking-[0.25em] text-yellow-300 mb-4">04</p>
+                        <h4 class="font-cyber text-xl text-white mb-3">Portfolio Websites</h4>
+                        <p class="text-gray-400 leading-relaxed">Visual personal sites with stronger storytelling, refined motion, and sections that help recruiters scan value quickly.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <!-- Projects Section -->
         <section id="projects" class="py-32 px-6 relative">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-16 section-reveal">
-                    <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-blue)] mb-2">03 // WORK</h2>
+                    <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-blue)] mb-2">04 // WORK</h2>
                     <h3 class="font-cyber text-4xl md:text-5xl font-bold text-white">Featured Projects</h3>
                 </div>
 
@@ -708,7 +977,7 @@ package main
         <section id="achievements" class="py-32 px-6 bg-[#050505]">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16 section-reveal">
-                    <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-purple)] mb-2">04 // MILESTONES</h2>
+                    <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-purple)] mb-2">05 // MILESTONES</h2>
                     <h3 class="font-cyber text-4xl md:text-5xl font-bold text-white">Achievements</h3>
                 </div>
 
@@ -736,9 +1005,48 @@ package main
                 </div>
             </div>
         </section>
+
+        <section id="process" class="py-32 px-6 relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid lg:grid-cols-[1.1fr,1.4fr] gap-10 items-start">
+                    <div class="section-reveal">
+                        <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-blue)] mb-2">06 // WORKFLOW</h2>
+                        <h3 class="font-cyber text-4xl md:text-5xl font-bold text-white mb-6">How I Approach Builds</h3>
+                        <p class="text-gray-400 text-lg leading-relaxed">A portfolio feels more complete when it shows process. This section makes the site read less like a gallery and more like a real working profile.</p>
+                        <div class="availability-card glass-card p-6 mt-8">
+                            <p class="font-cyber text-xs tracking-[0.3em] text-[var(--neon-green)] mb-3">CURRENTLY FOCUSED ON</p>
+                            <p class="text-white text-xl mb-3">Mobile products, realtime systems, and secure user experiences.</p>
+                            <p class="text-gray-400">Best fit for student-tech tools, operations dashboards, service apps, and portfolio websites with stronger identity.</p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <article class="section-reveal glass-card process-card p-7">
+                            <p class="font-cyber text-xs tracking-[0.25em] text-[var(--neon-purple)] mb-3">STEP 01</p>
+                            <h4 class="font-cyber text-xl text-white mb-3">Discover</h4>
+                            <p class="text-gray-400">Understand the user journey, blockers, and what outcome matters most before touching implementation.</p>
+                        </article>
+                        <article class="section-reveal glass-card process-card p-7" style="transition-delay: 0.1s;">
+                            <p class="font-cyber text-xs tracking-[0.25em] text-[var(--neon-blue)] mb-3">STEP 02</p>
+                            <h4 class="font-cyber text-xl text-white mb-3">Design</h4>
+                            <p class="text-gray-400">Build interfaces and flows that are usable first, then layer in motion, style, and personality with restraint.</p>
+                        </article>
+                        <article class="section-reveal glass-card process-card p-7" style="transition-delay: 0.2s;">
+                            <p class="font-cyber text-xs tracking-[0.25em] text-[var(--neon-green)] mb-3">STEP 03</p>
+                            <h4 class="font-cyber text-xl text-white mb-3">Develop</h4>
+                            <p class="text-gray-400">Ship with clean architecture, scalable state, Firebase integration, and meaningful performance decisions.</p>
+                        </article>
+                        <article class="section-reveal glass-card process-card p-7" style="transition-delay: 0.3s;">
+                            <p class="font-cyber text-xs tracking-[0.25em] text-yellow-300 mb-3">STEP 04</p>
+                            <h4 class="font-cyber text-xl text-white mb-3">Refine</h4>
+                            <p class="text-gray-400">Polish edge cases, improve reliability, and make the final product feel intentionally crafted instead of merely finished.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!--Github stats section-->
         <section class="py-20 px-6 text-center">
-    <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-blue)] mb-2">05 // MILESTONES</h2>
+    <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-blue)] mb-2">07 // GITHUB</h2>
     <h3 class="font-cyber text-4xl md:text-5xl font-bold text-white">GitHub's Stats</h3>
     <br>
     <br>
@@ -756,7 +1064,7 @@ package main
 
             <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 relative z-10">
                 <div class="section-reveal">
-                    <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-blue)] mb-2">05 // CONTACT</h2>
+                    <h2 class="font-cyber text-sm tracking-[0.3em] text-[var(--neon-blue)] mb-2">08 // CONTACT</h2>
                     <h3 class="font-cyber text-4xl md:text-5xl font-bold text-white mb-8">Let's Connect</h3>
                     
                     <p class="text-gray-300 mb-8 text-lg">
@@ -794,6 +1102,12 @@ package main
                         </div>
 
                     </div>
+                    <div class="glass-card insight-card p-6 mt-10">
+                        <p class="font-cyber text-xs tracking-[0.3em] text-[var(--neon-purple)] mb-3">QUICK START</p>
+                        <p class="text-white text-lg mb-3">Need a portfolio upgrade, app UI refresh, or Firebase-backed product build?</p>
+                        <p class="text-gray-400 mb-5">Send a short brief and I can help shape the scope, features, and execution plan.</p>
+                        <button id="copy-email-btn" type="button" class="btn-cyber w-full sm:w-auto">Copy Email Address</button>
+                    </div>
                 </div>
 
                 
@@ -815,6 +1129,7 @@ package main
                         <button type="submit" class="btn-cyber w-full border-[var(--neon-purple)] text-[var(--neon-purple)] hover:text-black hover:border-transparent">
                             Send Transmission
                         </button>
+                        <p id="form-status" class="form-status" aria-live="polite"></p>
                     </form>
                 </div>
             </div>
@@ -824,12 +1139,18 @@ package main
         <footer class="py-8 border-t border-gray-900 px-6">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-gray-600 text-sm">
-                    &copy;2026 <span class="text-[var(--neon-blue)]">Kush Kumar</span>
+                    &copy;<span id="current-year">2026</span> <span class="text-[var(--neon-blue)]">Kush Kumar</span>
                 </p>
             </div>
         </footer>
 
     </main>
+
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
 
     <!-- Three.js Script -->
      <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
@@ -1034,6 +1355,35 @@ package main
                 }
             });
         });
+
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            backToTopBtn.classList.toggle('visible', window.scrollY > 500);
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scroll({ top: 0, behavior: 'smooth' });
+        });
+
+        const copyEmailBtn = document.getElementById('copy-email-btn');
+        const portfolioEmail = 'kushk3882@gmail.com';
+        if (copyEmailBtn) {
+            copyEmailBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(portfolioEmail);
+                    copyEmailBtn.textContent = 'Email Copied';
+                    setTimeout(() => {
+                        copyEmailBtn.textContent = 'Copy Email Address';
+                    }, 1800);
+                } catch (error) {
+                    copyEmailBtn.textContent = portfolioEmail;
+                }
+            });
+        }
+
+        const currentYear = document.getElementById('current-year');
+        if (currentYear) {
+            currentYear.textContent = new Date().getFullYear();
+        }
     </script>
     <script>
         const loaderQuote = document.getElementById("loader-quote");
@@ -1110,11 +1460,16 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
-const form = document.querySelector("form");
+const form = document.getElementById("contect-form");
+const formStatus = document.getElementById("form-status");
 
 form.addEventListener("submit", async(e)=>{
 
 e.preventDefault();
+
+if (formStatus) {
+formStatus.textContent = "Sending message...";
+}
 
 const name = form.querySelector('input[type="text"]').value;
 const email = form.querySelector('input[type="email"]').value;
@@ -1133,11 +1488,19 @@ timestamp:Date.now()
 
 alert("Message sent successfully!");
 
+if (formStatus) {
+formStatus.textContent = "Message sent successfully.";
+}
+
 form.reset();
 
 }catch(error){
 
 alert("Error sending message");
+
+if (formStatus) {
+formStatus.textContent = "Message failed. Please try again.";
+}
 
 console.log(error);
 
