@@ -203,8 +203,40 @@
         .text-glow-blue {
             text-shadow: 0 0 5px rgba(0, 243, 255, 0.7), 0 0 10px rgba(0, 243, 255, 0.5);
         }
-        .text-glow-purple {
-            text-shadow: 0 0 5px rgba(188, 19, 254, 0.7), 0 0 15px rgba(188, 19, 254, 0.5);
+        
+
+        .nav-profile-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            padding: 0.08rem;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.12);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .nav-profile-link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.16);
+        }
+
+        .nav-profile-photo {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 9999px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        @media (max-width: 768px) {
+            .nav-profile-link {
+                width: 2.75rem;
+                height: 2.75rem;
+            }
         }
 
         /* Hero Animation */
@@ -339,8 +371,8 @@
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent">
-        <a href="#" class="font-cyber text-sm tracking-widest text-glow-blue">
-            @ i_am_kushk<span class="text-[var(--neon-purple)]">
+        <a href="#" class="nav-profile-link" aria-label="Kush Kumar home">
+            <img src="./pp4.jpeg" alt="Kush Kumar profile photo" class="nav-profile-photo">
         </a>
 
         <div class="hidden md:flex items-center gap-8">
@@ -348,6 +380,7 @@
             <a href="#skills" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors">Skills</a>
             <a href="#projects" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors">Projects</a>
             <a href="#contact" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors">Contact</a>
+            <a href="https://www.instagram.com/" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors" target="_blank" rel="noopener noreferrer">Instagram</a>
         </div>
 
         <button id="menu-btn" class="md:hidden text-[var(--neon-blue)] z-50">
@@ -433,8 +466,8 @@ package main
                         </pre>
                         <div class="absolute bottom-0 right-0 w-64 h-64 bg-[var(--neon-purple)] opacity-10 rounded-full blur-3xl"></div>                        
                         <!-- Profile Image Placeholder -->
-                        <div class="absolute bottom-10 right-10 w-48 h-48 rounded border border-[var(--neon-blue)]/50 p-1 overflow-hidden">
-                             <img src="./profile_picture.png" alt="Kush Kumar profile picture" class="w-full h-full object-cover">
+                        <div class="absolute bottom-20 right-10 w-48 h-48 rounded border border-[var(--neon-blue)]/50 p-1 overflow-hidden">
+                             <img src="./pp4.jpeg" alt="Kush Kumar profile picture" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
@@ -634,10 +667,9 @@ package main
     <br>
     <br>
     <br>
-    <br>
+    <br>            
     <center>
-    <img src="https://github-readme-stats.vercel.app/api?username=kush7511&show_icons=true&theme=radical" width="450"/><br>
-    <img src="https://github-readme-streak-stats.herokuapp.com/?user=kush7511&theme=radical" width="600"/>
+       <img src="https://github-readme-streak-stats.herokuapp.com/?user=kush7511&theme=radical" width="600"/>
     </center>
 </section>
         <!--Stat section ends here-->
@@ -662,7 +694,7 @@ package main
                             </div>
                             <div>
                                 <p class="text-xs text-gray-500 uppercase">Email</p>
-                                <a href="mailto:kushk3882@gmail.com" class="text-white hover:text-[var(--neon-blue)] transition-colors">kushk3882@gmail.com</a>
+                                <a href="mailto:kushk3882@gmail.com" class="text-white hover:text-[var(--neon-blue)] transition-colors">Mail me</a>
                             </div>
                         </div>
 
@@ -672,9 +704,19 @@ package main
                             </div>
                             <div>
                                 <p class="text-xs text-gray-500 uppercase">GitHub</p>
-                                <a href="https://github.com/kush7511" class="text-white hover:text-[var(--neon-purple)] transition-colors">https://github.com/kush7511</a>
+                                <a href="https://github.com/kush7511" class="text-white hover:text-[var(--neon-purple)] transition-colors">Follow me on Github</a>
                             </div>
                         </div>
+                        <div class="flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-full border border-gray-700 flex items-center justify-center text-[var(--neon-blue)] group-hover:border-[var(--neon-blue)] group-hover:bg-[var(--neon-blue)]/10 transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase">LinkedIn</p>
+                                <a href="https://www.linkedin.com/in/kushk3882/" class="text-white hover:text-[var(--neon-purple)] transition-colors">Let's Connect on LinkedIn</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -714,6 +756,7 @@ package main
     </main>
 
     <!-- Three.js Script -->
+     <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
     <script type="module">
         import * as THREE from 'three';
 
@@ -921,7 +964,16 @@ package main
         const quotes = [
             "Securing systems, one line of code at a time.",
             "Think like a hacker, build like a developer.",
-            "Security is not a feature, it's a mindset."
+            "Security is not a feature, it's a mindset.",
+            "First, solve the problem. Then, write the code.",
+            "Programs must be written for people to read, and only incidentally for machines to execute.",
+            "Simplicity is prerequisite for reliability.",
+            "The best way to predict the future is to invent it.",
+            "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.",
+            "A language that doesn't affect the way you think about programming is not worth knowing.",
+            "Keeping it classy and technical",
+            "In programming, if someone tells you “you’re overcomplicating it,” they’re either 10 steps behind you or 10 steps ahead of you.",
+            "It is very hard to predict, especially the future."
         ];
 
         const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
@@ -1020,5 +1072,9 @@ console.log(error);
 </script>
 </body>
 </html>
+
+
+
+
 
 
