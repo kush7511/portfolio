@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A student-facing mobile application that combines utility services, AI assistance, and a more connected digital campus experience.">
+    <title>CUJ Student App | Kush Kumar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/site-theme.css">
+</head>
+<body class="detail-body">
+    <div id="page-loader" class="transition-loader">
+        <div class="transition-loader__frame">
+            <div class="transition-loader__eyebrow">Student System Layer</div>
+            <h1 class="transition-loader__title">Opening View</h1>
+            <p class="transition-loader__text">A themed navigation layer is preparing the next experience with the same futuristic visual system.</p>
+            <div class="transition-loader__meta">
+                <span class="transition-loader__status" data-loader-status>Syncing interface layers</span>
+                <span class="transition-loader__percent" data-loader-percent>0%</span>
+            </div>
+            <div class="transition-loader__track">
+                <div class="transition-loader__bar" data-loader-bar></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-shell">
+        <canvas id="detail-canvas" class="detail-canvas"></canvas>
+        <div class="ambient-orb orb-one"></div>
+        <div class="ambient-orb orb-two"></div>
+
+        <nav class="detail-nav">
+            <a href="../index.html" class="detail-brand" data-page-link>
+                <span class="detail-brand__dot"></span>
+                <span>Kush Kumar</span>
+            </a>
+            <div class="detail-nav__links">
+                <a href="../index.html#projects" data-page-link>Projects</a>
+                <a href="../index.html#services" data-page-link>Services</a>
+                <a href="../index.html#contact" data-page-link>Contact</a>
+            </div>
+        </nav>
+
+        <main class="detail-main">
+            <section class="detail-hero">
+                <article class="detail-panel">
+                    <span class="detail-kicker">Project // 02</span>
+                    <h1 class="detail-title">CUJ Student App</h1>
+                    <p class="detail-subtitle">A student-facing mobile application that combines utility services, AI assistance, and a more connected digital campus experience.</p>
+                    <div class="detail-chip-row">
+                        <span class="detail-chip">Student Experience</span>
+                        <span class="detail-chip">AI Assistant</span>
+                        <span class="detail-chip">Campus Services</span>
+                    </div>
+                    <div class="detail-footer">
+                        <a href="#" class="detail-button detail-button--primary" data-download-trigger data-project-name="CUJ Student App" data-android-link="https://example.com/downloads/cuj-student-android" data-ios-link="https://example.com/downloads/cuj-student-ios" data-desktop-link="https://example.com/downloads/cuj-student-desktop">Download This App</a>
+                        <a href="../index.html" class="detail-button detail-button--secondary" data-page-link>Back Home</a>
+                        <a href="../index.html#contact" class="detail-button detail-button--secondary" data-page-link>Start a Project</a>
+                    </div>
+                </article>
+                <aside class="detail-panel">
+                    <div class="detail-stat-grid">
+                        <div class="detail-stat"><strong>Unified Access</strong><span>Students can reach multiple campus tools from one interface.</span></div>
+                    <div class="detail-stat"><strong>AI Layer</strong><span>Support can feel more immediate and helpful through guided responses.</span></div>
+                    <div class="detail-stat"><strong>Daily Utility</strong><span>Built around practical everyday campus interactions.</span></div>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="detail-grid">
+                <article class="detail-panel detail-grid__wide">
+                    <h2 class="detail-section-title">Overview</h2>
+                    <p class="detail-copy">The CUJ Student App is a broader student product experience that brings together information, services, and support into one mobile interface. Rather than scattering functions across disconnected pages or channels, the app centralizes what students need in a cleaner and more accessible system.</p>
+                    <ul class="detail-list">
+                        <li>The AI support flow helps students navigate questions faster inside a familiar interface.</li>
+                        <li>Campus utilities and notifications are framed as one joined experience instead of separate tools.</li>
+                        <li>The design direction prioritizes clarity and trust so the app feels dependable for daily use.</li>
+                    </ul>
+                </article>
+                <aside class="detail-panel detail-grid__narrow">
+                    <h2 class="detail-section-title">Core Stack</h2>
+                    <div class="detail-stack">
+                        <span>Flutter</span>
+                        <span>Firebase</span>
+                        <span>AI Integrations</span>
+                        <span>Cloud Services</span>
+                        <span>Mobile UX</span>
+                    </div>
+                    <div class="detail-card-grid">
+                        <article class="detail-card"><strong>Product Cohesion</strong><p>Different student needs are handled inside one connected experience.</p></article>
+                        <article class="detail-card"><strong>Support Experience</strong><p>AI is positioned as a helpful layer, not a gimmick.</p></article>
+                        <article class="detail-card"><strong>Long-Term Value</strong><p>The product can grow into a deeper campus platform over time.</p></article>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="detail-summary">
+                <div class="detail-summary__item"><strong>Audience</strong><span>Students who need quick access to campus support and services.</span></div>
+                <div class="detail-summary__item"><strong>Strength</strong><span>Combines utility and assistance in a single mobile product.</span></div>
+                <div class="detail-summary__item"><strong>Result</strong><span>A more modern and organized digital student experience.</span></div>
+            </section>
+        </main>
+    </div>
+
+    
+    <div id="download-modal" class="download-modal" aria-hidden="true">
+        <div class="download-modal__panel">
+            <button type="button" class="download-modal__close" data-modal-close aria-label="Close download popup">✕</button>
+            <span class="download-modal__kicker">App Delivery Gateway</span>
+            <h2 class="download-modal__title" data-download-title>Download App</h2>
+            <p class="download-modal__text">Choose the platform you want to download. These are placeholder links for now, so you can replace them later with the final Android, iOS, and desktop builds.</p>
+            <div class="download-modal__options">
+                <article class="download-option">
+                    <strong>Android</strong>
+                    <p>Ideal for APK or Play Store delivery. Use this option for phone and tablet Android installs.</p>
+                    <a href="#" class="detail-button detail-button--primary" data-download-target="android">Download Android</a>
+                </article>
+                <article class="download-option">
+                    <strong>iOS</strong>
+                    <p>Use this slot for TestFlight, App Store, or direct iOS distribution links when you are ready.</p>
+                    <a href="#" class="detail-button detail-button--secondary" data-download-target="ios">Download iOS</a>
+                </article>
+                <article class="download-option">
+                    <strong>Desktop</strong>
+                    <p>Best for Windows, macOS, or packaged desktop releases when the project has a desktop build.</p>
+                    <a href="#" class="detail-button detail-button--secondary" data-download-target="desktop">Download Desktop</a>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="../assets/site-theme.js"></script>
+</body>
+</html>
+

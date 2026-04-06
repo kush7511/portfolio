@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -669,6 +669,16 @@
             background: linear-gradient(180deg, transparent, rgba(2, 5, 14, 0.65));
         }
 
+        .page-card-link {
+            display: block;
+            color: inherit;
+        }
+
+        .page-card-link:focus-visible {
+            outline: 2px solid var(--neon-blue);
+            outline-offset: 8px;
+        }
+
         .metric-card {
             padding: 1.35rem;
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -1237,26 +1247,34 @@ package main
                 </div>
 
                 <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-                    <article class="section-reveal glass-card service-card p-8">
-                        <p class="font-cyber text-xs tracking-[0.25em] text-[var(--neon-blue)] mb-4">01</p>
-                        <h4 class="font-cyber text-xl text-white mb-3">Mobile Apps</h4>
-                        <p class="text-gray-400 leading-relaxed">Cross-platform Flutter apps with responsive UI, structured state, and production-ready Firebase workflows.</p>
-                    </article>
-                    <article class="section-reveal glass-card service-card p-8" style="transition-delay: 0.1s;">
-                        <p class="font-cyber text-xs tracking-[0.25em] text-[var(--neon-purple)] mb-4">02</p>
-                        <h4 class="font-cyber text-xl text-white mb-3">Realtime Systems</h4>
-                        <p class="text-gray-400 leading-relaxed">Live location, instant updates, event tracking, and dashboard-driven flows for logistics or campus-style operations.</p>
-                    </article>
-                    <article class="section-reveal glass-card service-card p-8" style="transition-delay: 0.2s;">
-                        <p class="font-cyber text-xs tracking-[0.25em] text-[var(--neon-green)] mb-4">03</p>
-                        <h4 class="font-cyber text-xl text-white mb-3">Secure Backends</h4>
-                        <p class="text-gray-400 leading-relaxed">Firebase-powered backends, role-based flows, cloud integrations, and security-minded architecture choices.</p>
-                    </article>
-                    <article class="section-reveal glass-card service-card p-8" style="transition-delay: 0.3s;">
-                        <p class="font-cyber text-xs tracking-[0.25em] text-yellow-300 mb-4">04</p>
-                        <h4 class="font-cyber text-xl text-white mb-3">Portfolio Websites</h4>
-                        <p class="text-gray-400 leading-relaxed">Visual personal sites with stronger storytelling, refined motion, and sections that help recruiters scan value quickly.</p>
-                    </article>
+                    <a href="pages/service-mobile-apps.html" class="page-card-link section-reveal" data-page-link>
+                        <article class="glass-card service-card p-8">
+                            <p class="font-cyber text-xs tracking-[0.25em] text-[var(--neon-blue)] mb-4">01</p>
+                            <h4 class="font-cyber text-xl text-white mb-3">Mobile Apps</h4>
+                            <p class="text-gray-400 leading-relaxed">Cross-platform Flutter apps with responsive UI, structured state, and production-ready Firebase workflows.</p>
+                        </article>
+                    </a>
+                    <a href="pages/service-realtime-systems.html" class="page-card-link section-reveal" data-page-link style="transition-delay: 0.1s;">
+                        <article class="glass-card service-card p-8">
+                            <p class="font-cyber text-xs tracking-[0.25em] text-[var(--neon-purple)] mb-4">02</p>
+                            <h4 class="font-cyber text-xl text-white mb-3">Realtime Systems</h4>
+                            <p class="text-gray-400 leading-relaxed">Live location, instant updates, event tracking, and dashboard-driven flows for logistics or campus-style operations.</p>
+                        </article>
+                    </a>
+                    <a href="pages/service-secure-backends.html" class="page-card-link section-reveal" data-page-link style="transition-delay: 0.2s;">
+                        <article class="glass-card service-card p-8">
+                            <p class="font-cyber text-xs tracking-[0.25em] text-[var(--neon-green)] mb-4">03</p>
+                            <h4 class="font-cyber text-xl text-white mb-3">Secure Backends</h4>
+                            <p class="text-gray-400 leading-relaxed">Firebase-powered backends, role-based flows, cloud integrations, and security-minded architecture choices.</p>
+                        </article>
+                    </a>
+                    <a href="pages/service-portfolio-websites.html" class="page-card-link section-reveal" data-page-link style="transition-delay: 0.3s;">
+                        <article class="glass-card service-card p-8">
+                            <p class="font-cyber text-xs tracking-[0.25em] text-yellow-300 mb-4">04</p>
+                            <h4 class="font-cyber text-xl text-white mb-3">Portfolio Websites</h4>
+                            <p class="text-gray-400 leading-relaxed">Visual personal sites with stronger storytelling, refined motion, and sections that help recruiters scan value quickly.</p>
+                        </article>
+                    </a>
                 </div>
             </div>
         </section>
@@ -1271,59 +1289,58 @@ package main
 
                 <div class="grid lg:grid-cols-3 gap-8">
                     <!-- Project 1 -->
-                    <div class="section-reveal glass-card overflow-hidden group project-card interactive-panel">
-                        <div class="project-visual h-48 bg-gradient-to-br from-[#0f172a] to-[#0f0f23] relative flex items-center justify-center overflow-hidden">
-                            <!-- Placeholder Graphic -->
-                            <svg class="w-16 h-16 text-[var(--neon-blue)] opacity-20 group-hover:scale-125 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
-                            <div class="absolute bottom-2 right-2 text-xs font-cyber opacity-50">SYS_V1.0</div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex flex-wrap gap-2 mb-4"><span class="project-tag">Realtime Tracking</span><span class="project-tag">Campus Mobility</span></div>
-                            <h4 class="font-cyber text-xl font-bold text-white mb-2">EV Tracking System</h4>
-                            <p class="text-sm text-gray-400 mb-4 min-h-[4rem] md:h-16">
-                                Smart EV tracking system for Central University of Jammu. Real-time student location pickup request system integrated with driver navigation.
-                            </p>
-                            <div class="skill-icon-strip flex flex-wrap gap-2 text-xs text-[var(--neon-blue)]">
-                                <span><img src="https://skillicons.dev/icons?i=flutter,firebase,googlecloud" /></span>
+                    <a href="pages/project-ev-tracking-system.html" class="page-card-link section-reveal" data-page-link>
+                        <div class="glass-card overflow-hidden group project-card interactive-panel">
+                            <div class="project-visual h-48 bg-gradient-to-br from-[#0f172a] to-[#0f0f23] relative flex items-center justify-center overflow-hidden">
+                                <svg class="w-16 h-16 text-[var(--neon-blue)] opacity-20 group-hover:scale-125 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                                <div class="absolute bottom-2 right-2 text-xs font-cyber opacity-50">SYS_V1.0</div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex flex-wrap gap-2 mb-4"><span class="project-tag">Realtime Tracking</span><span class="project-tag">Campus Mobility</span></div>
+                                <h4 class="font-cyber text-xl font-bold text-white mb-2">EV Tracking System</h4>
+                                <p class="text-sm text-gray-400 mb-4 min-h-[4rem] md:h-16">Smart EV tracking system for Central University of Jammu. Real-time student location pickup request system integrated with driver navigation.</p>
+                                <div class="skill-icon-strip flex flex-wrap gap-2 text-xs text-[var(--neon-blue)]">
+                                    <span><img src="https://skillicons.dev/icons?i=flutter,firebase,googlecloud" /></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
 
                     <!-- Project 2 -->
-                    <div class="section-reveal glass-card overflow-hidden group project-card interactive-panel" style="transition-delay: 0.1s;">
-                        <div class="project-visual h-48 bg-gradient-to-br from-[#1a0b2e] to-[#0a0a0a] relative flex items-center justify-center overflow-hidden">
-                            <svg class="w-16 h-16 text-[var(--neon-purple)] opacity-20 group-hover:scale-125 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                            <div class="absolute bottom-2 right-2 text-xs font-cyber opacity-50">APP_V1.0</div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex flex-wrap gap-2 mb-4"><span class="project-tag">Student Experience</span><span class="project-tag">AI Assistant</span></div>
-                            <h4 class="font-cyber text-xl font-bold text-white mb-2">CUJ Student App</h4>
-                            <p class="text-sm text-gray-400 mb-4 min-h-[4rem] md:h-16">
-                                Comprehensive mobile application for students featuring AI chatbot assistance, campus utility services, and notifications.
-                            </p>
-                            <div class="skill-icon-strip flex flex-wrap gap-2 text-xs text-[var(--neon-purple)]">
-                                <span><img src="https://skillicons.dev/icons?i=flutter,ai,firebase,googlecloud" /></span>
+                    <a href="pages/project-cuj-student-app.html" class="page-card-link section-reveal" data-page-link style="transition-delay: 0.1s;">
+                        <div class="glass-card overflow-hidden group project-card interactive-panel">
+                            <div class="project-visual h-48 bg-gradient-to-br from-[#1a0b2e] to-[#0a0a0a] relative flex items-center justify-center overflow-hidden">
+                                <svg class="w-16 h-16 text-[var(--neon-purple)] opacity-20 group-hover:scale-125 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                                <div class="absolute bottom-2 right-2 text-xs font-cyber opacity-50">APP_V1.0</div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex flex-wrap gap-2 mb-4"><span class="project-tag">Student Experience</span><span class="project-tag">AI Assistant</span></div>
+                                <h4 class="font-cyber text-xl font-bold text-white mb-2">CUJ Student App</h4>
+                                <p class="text-sm text-gray-400 mb-4 min-h-[4rem] md:h-16">Comprehensive mobile application for students featuring AI chatbot assistance, campus utility services, and notifications.</p>
+                                <div class="skill-icon-strip flex flex-wrap gap-2 text-xs text-[var(--neon-purple)]">
+                                    <span><img src="https://skillicons.dev/icons?i=flutter,ai,firebase,googlecloud" /></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
 
                     <!-- Project 3 -->
-                    <div class="section-reveal glass-card overflow-hidden group project-card interactive-panel" style="transition-delay: 0.2s;">
-                        <div class="project-visual h-48 bg-gradient-to-br from-[#0a192f] to-[#020202] relative flex items-center justify-center overflow-hidden">
-                            <svg class="w-16 h-16 text-[var(--neon-green)] opacity-20 group-hover:scale-125 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                            <div class="absolute bottom-2 right-2 text-xs font-cyber opacity-50">DRV_V1.2</div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex flex-wrap gap-2 mb-4"><span class="project-tag">Driver Tools</span><span class="project-tag">Map Routing</span></div>
-                            <h4 class="font-cyber text-xl font-bold text-white mb-2">Driver EV App</h4>
-                            <p class="text-sm text-gray-400 mb-4 min-h-[4rem] md:h-16">
-                                Dedicated application for EV drivers to receive pickup requests, view student locations on map, and optimize routes.
-                            </p>
-                            <div class="skill-icon-strip flex flex-wrap gap-2 text-xs text-[var(--neon-green)]">
-                                <span><img src="https://skillicons.dev/icons?i=flutter,firebase,googlecloud,googlemaps" /></span>
+                    <a href="pages/project-driver-ev-app.html" class="page-card-link section-reveal" data-page-link style="transition-delay: 0.2s;">
+                        <div class="glass-card overflow-hidden group project-card interactive-panel">
+                            <div class="project-visual h-48 bg-gradient-to-br from-[#0a192f] to-[#020202] relative flex items-center justify-center overflow-hidden">
+                                <svg class="w-16 h-16 text-[var(--neon-green)] opacity-20 group-hover:scale-125 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                <div class="absolute bottom-2 right-2 text-xs font-cyber opacity-50">DRV_V1.2</div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex flex-wrap gap-2 mb-4"><span class="project-tag">Driver Tools</span><span class="project-tag">Map Routing</span></div>
+                                <h4 class="font-cyber text-xl font-bold text-white mb-2">Driver EV App</h4>
+                                <p class="text-sm text-gray-400 mb-4 min-h-[4rem] md:h-16">Dedicated application for EV drivers to receive pickup requests, view student locations on map, and optimize routes.</p>
+                                <div class="skill-icon-strip flex flex-wrap gap-2 text-xs text-[var(--neon-green)]">
+                                    <span><img src="https://skillicons.dev/icons?i=flutter,firebase,googlecloud,googlemaps" /></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
@@ -1677,6 +1694,44 @@ package main
             type();
         }, 3000);
 
+        const localPageLinks = document.querySelectorAll('[data-page-link]');
+        const loader = document.getElementById('loader');
+        const loaderBar = document.querySelector('.loader-bar');
+        const loaderQuoteEl = document.getElementById('loader-quote');
+
+        localPageLinks.forEach((link) => {
+            link.addEventListener('click', (event) => {
+                const href = link.getAttribute('href');
+                if (!href) return;
+
+                const targetUrl = new URL(href, window.location.href);
+                if (targetUrl.origin !== window.location.origin) return;
+
+                event.preventDefault();
+                if (loaderQuoteEl) {
+                    loaderQuoteEl.textContent = 'OPENING NEXT VIEW';
+                    loaderQuoteEl.setAttribute('data-text', 'OPENING NEXT VIEW');
+                    loaderQuoteEl.style.background = 'linear-gradient(90deg, #00f3ff, #bc13fe, #0aff0a)';
+                    loaderQuoteEl.style.webkitBackgroundClip = 'text';
+                    loaderQuoteEl.style.webkitTextFillColor = 'transparent';
+                }
+                if (loaderBar) {
+                    loaderBar.style.animation = 'none';
+                    loaderBar.style.width = '0%';
+                    requestAnimationFrame(() => {
+                        loaderBar.style.transition = 'width 0.45s ease';
+                        loaderBar.style.width = '100%';
+                    });
+                }
+                if (loader) {
+                    loader.classList.remove('hidden');
+                }
+
+                setTimeout(() => {
+                    window.location.href = targetUrl.href;
+                }, 420);
+            });
+        });
         // --- Scroll Reveal ---
         const observerOptions = {
             threshold: 0.1,
@@ -1688,7 +1743,7 @@ package main
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
-            });
+            }); 
         }, observerOptions);
 
         document.querySelectorAll('.section-reveal').forEach(el => {
@@ -1832,8 +1887,8 @@ package main
             currentYear.textContent = new Date().getFullYear();
         }
     </script>
-    <script>
-        const loaderQuote = document.getElementById("loader-quote");
+    <script>        const loaderQuote = document.getElementById("loader-quote");
+        const hasSeenWelcomeQuote = sessionStorage.getItem('portfolioWelcomeQuoteSeen') === 'true';
         const quotes = [
             "Securing systems, one line of code at a time.",
             "Think like a hacker, build like a developer.",
@@ -1845,38 +1900,46 @@ package main
             "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.",
             "A language that doesn't affect the way you think about programming is not worth knowing.",
             "Keeping it classy and technical",
-            "In programming, if someone tells you “you’re overcomplicating it,” they’re either 10 steps behind you or 10 steps ahead of you.",
+            "In programming, if someone tells you you're overcomplicating it, they're either 10 steps behind you or 10 steps ahead of you.",
             "It is very hard to predict, especially the future."
         ];
 
-        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-
-        let i = 0;
-        loaderQuote.textContent = "";
-
-        function typeLoaderQuote() {
-            if (i < randomQuote.length) {
-                loaderQuote.textContent += randomQuote.charAt(i);
-                loaderQuote.setAttribute("data-text", loaderQuote.textContent);
-                i++;
-                setTimeout(typeLoaderQuote, 50);
-            }
-        }
-        typeLoaderQuote();
         const gradients = [
-    "linear-gradient(90deg, #00f3ff, #bc13fe)",
-    "linear-gradient(90deg, #0aff0a, #00f3ff)",
-    "linear-gradient(90deg, #bc13fe, #ff00ff)"
-];
+            "linear-gradient(90deg, #00f3ff, #bc13fe)",
+            "linear-gradient(90deg, #0aff0a, #00f3ff)",
+            "linear-gradient(90deg, #bc13fe, #ff00ff)"
+        ];
 
-function applyGradientText() {
-    const gradient = gradients[Math.floor(Math.random() * gradients.length)];
-    loaderQuote.style.background = gradient;
-    loaderQuote.style.webkitBackgroundClip = "text";
-    loaderQuote.style.webkitTextFillColor = "transparent";
-    loaderQuote.style.textShadow = "0 0 15px rgba(255,255,255,0.3)";
-}
-applyGradientText();
+        function applyGradientText() {
+            const gradient = gradients[Math.floor(Math.random() * gradients.length)];
+            loaderQuote.style.background = gradient;
+            loaderQuote.style.webkitBackgroundClip = "text";
+            loaderQuote.style.webkitTextFillColor = "transparent";
+            loaderQuote.style.textShadow = "0 0 15px rgba(255,255,255,0.3)";
+        }
+
+        if (hasSeenWelcomeQuote) {
+            loaderQuote.textContent = "INITIALIZING SYSTEM...";
+            loaderQuote.setAttribute("data-text", "INITIALIZING SYSTEM...");
+        } else {
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            let i = 0;
+            loaderQuote.textContent = "";
+
+            function typeLoaderQuote() {
+                if (i < randomQuote.length) {
+                    loaderQuote.textContent += randomQuote.charAt(i);
+                    loaderQuote.setAttribute("data-text", loaderQuote.textContent);
+                    i++;
+                    setTimeout(typeLoaderQuote, 50);
+                }
+            }
+
+            typeLoaderQuote();
+            sessionStorage.setItem('portfolioWelcomeQuoteSeen', 'true');
+        }
+
+        applyGradientText();
 
 
     </script>
@@ -1958,6 +2021,10 @@ console.log(error);
 </script>
 </body>
 </html>
+
+
+
+
 
 
 
