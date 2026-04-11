@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,8 +10,17 @@
     <title>Kush Kumar | Software Developer & Cybersecurity Enthusiast</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://skillicons.dev" crossorigin>
+    <link rel="preconnect" href="https://github-readme-streak-stats.herokuapp.com" crossorigin>
+    <link rel="dns-prefetch" href="//unpkg.com">
+    <link rel="dns-prefetch" href="//www.gstatic.com">
+    <link rel="dns-prefetch" href="//skillicons.dev">
+    <link rel="dns-prefetch" href="//github-readme-streak-stats.herokuapp.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" as="image" href="./profile_picture.png" imagesrcset="./profile_picture.png 618w, ./pp4.jpeg 720w" imagesizes="48px">
 <style>
         :root {
             --neon-blue: #00f3ff;
@@ -1015,6 +1024,11 @@
                 contain-intrinsic-size: 900px;
             }
         }
+
+        .github-stats-image[data-src] {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            min-height: 195px;
+        }
     </style>
 </head>
 <body>
@@ -1043,7 +1057,7 @@
     <!-- Navigation -->
     <nav id="site-nav" class="site-nav fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent">
         <a href="#" class="nav-profile-link" aria-label="Kush Kumar home">
-            <img src="./pp4.jpeg" alt="Kush Kumar profile photo" class="nav-profile-photo" width="720" height="720" decoding="async" fetchpriority="high">
+            <img src="./profile_picture.png" srcset="./profile_picture.png 618w, ./pp4.jpeg 720w" sizes="48px" alt="Kush Kumar profile photo" class="nav-profile-photo" width="618" height="618" decoding="async" fetchpriority="high">
         </a>
 
         <div class="hidden md:flex items-center gap-8">
@@ -1055,7 +1069,7 @@
             <a href="https://www.instagram.com/" class="nav-link text-sm tracking-widest uppercase hover:text-[var(--neon-blue)] transition-colors" target="_blank" rel="noopener noreferrer">Instagram</a>
         </div>
 
-        <button id="menu-btn" class="md:hidden text-[var(--neon-blue)] z-50">
+        <button id="menu-btn" class="md:hidden text-[var(--neon-blue)] z-50" type="button" aria-label="Open navigation menu" aria-controls="mobile-nav" aria-expanded="false">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -1189,7 +1203,7 @@ package main
                         <div class="absolute bottom-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-[var(--neon-purple)] opacity-10 rounded-full blur-3xl"></div>                        
                         <!-- Profile Image Placeholder -->
                         <div class="absolute bottom-6 right-6 sm:bottom-20 sm:right-10 w-32 h-32 sm:w-48 sm:h-48 rounded border border-[var(--neon-blue)]/50 p-1 overflow-hidden shadow-[0_0_25px_rgba(0,243,255,0.18)]">
-                             <img src="./pp4.jpeg" alt="Kush Kumar profile picture" class="w-full h-full object-cover" width="720" height="720" decoding="async">
+                             <img src="./profile_picture.png" srcset="./profile_picture.png 618w, ./pp4.jpeg 720w" sizes="(max-width: 640px) 128px, 192px" alt="Kush Kumar profile picture" class="w-full h-full object-cover" width="618" height="618" decoding="async" fetchpriority="high">
                         </div>
                     </div>
                 </div>
@@ -1490,7 +1504,7 @@ package main
                             <span>Learning + Building</span>
                         </div>
                     </div>
-                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=kush7511&theme=radical" alt="Kush Kumar GitHub streak stats" class="github-stats-image relative z-10" width="495" height="195" loading="lazy" decoding="async" />
+                    <img data-src="https://github-readme-streak-stats.herokuapp.com/?user=kush7511&theme=radical" alt="Kush Kumar GitHub streak stats" class="github-stats-image relative z-10" width="495" height="195" loading="lazy" decoding="async" />
                 </div>
             </div>
         </section>
@@ -1534,7 +1548,7 @@ package main
                         <p class="font-cyber text-xs tracking-[0.3em] text-[var(--neon-purple)] mb-3">QUICK START</p>
                         <p class="text-white text-lg mb-3">Need a portfolio upgrade, app UI refresh, or Firebase-backed product build?</p>
                         <p class="text-gray-400 mb-5">Send a short brief and I can help shape the scope, features, and execution plan.</p>
-                        <button id="copy-email-btn" type="button" class="btn-cyber w-full sm:w-auto">Copy Email Address</button>
+                        <button id="copy-email-btn" type="button" class="btn-cyber w-full sm:w-auto" aria-label="Copy email address">Copy Email Address</button>
                     </div>
                 </div>
 
@@ -1554,7 +1568,7 @@ package main
                             <label class="block text-xs text-gray-400 mb-2 tracking-widest uppercase">Message</label>
                             <textarea rows="4" class="cyber-input rounded-none resize-none" placeholder="Your message..."></textarea>
                         </div>
-                        <button type="submit" class="btn-cyber w-full border-[var(--neon-purple)] text-[var(--neon-purple)] hover:text-black hover:border-transparent">
+                        <button type="submit" class="btn-cyber w-full border-[var(--neon-purple)] text-[var(--neon-purple)] hover:text-black hover:border-transparent" aria-label="Send contact message">
                             Send Transmission
                         </button>
                         <p id="form-status" class="form-status" aria-live="polite"></p>
@@ -1778,9 +1792,17 @@ package main
 
         const menuBtn = document.getElementById('menu-btn');
         const mobileNav = document.getElementById('mobile-nav');
-        menuBtn?.addEventListener('click', () => mobileNav?.classList.toggle('open'));
+        menuBtn?.addEventListener('click', () => {
+            mobileNav?.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', mobileNav?.classList.contains('open') ? 'true' : 'false');
+            menuBtn.setAttribute('aria-label', mobileNav?.classList.contains('open') ? 'Close navigation menu' : 'Open navigation menu');
+        });
         document.querySelectorAll('.mobile-link').forEach((link) => {
-            link.addEventListener('click', () => mobileNav?.classList.remove('open'));
+            link.addEventListener('click', () => {
+                mobileNav?.classList.remove('open');
+                menuBtn?.setAttribute('aria-expanded', 'false');
+                menuBtn?.setAttribute('aria-label', 'Open navigation menu');
+            });
         });
 
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -1884,6 +1906,28 @@ package main
                 });
                 panel.addEventListener('mouseleave', () => { panel.style.transform = ''; });
             });
+        }
+
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        if (lazyImages.length) {
+            const loadLazyImage = (img) => {
+                if (!img.dataset.src) return;
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+            };
+
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+                        loadLazyImage(entry.target);
+                        imageObserver.unobserve(entry.target);
+                    });
+                }, { rootMargin: '200px 0px' });
+                lazyImages.forEach((img) => imageObserver.observe(img));
+            } else {
+                lazyImages.forEach(loadLazyImage);
+            }
         }
 
         const currentYear = document.getElementById('current-year');
@@ -1993,6 +2037,8 @@ package main
     </script>
 </body>
 </html>
+
+
 
 
 
